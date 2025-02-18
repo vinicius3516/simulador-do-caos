@@ -1,0 +1,20 @@
+services:
+  web-caos:
+    container_name: web-caos
+    image: vinny6202/simulador-caos:v2
+    ports:
+      - 8080:3000
+    networks:
+      - caos_net
+    #healthcheck:
+      #test: ["CMD", "curl", "http://localhost/3000/health" ]
+      #interval: 30s
+      #timeout: 5s
+      #retries: 3
+      #start_period: 30s
+
+networks:
+  caos_net:
+    name: caos_net
+    driver: bridge
+
