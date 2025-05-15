@@ -1,0 +1,36 @@
+apiVersion: v1
+kind: Deployment
+metadata:
+  name: simulador-do-caos
+  labels:
+    app: simulador-do-caos
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: simulador-do-caos
+  template:
+    metadata:
+      labels:
+        app: simulador-do-caos
+    spec:
+      containers:
+      - name: simulador-do-caos
+        image: vinny6202/simulador-caos:v1
+        ports:
+        - containerPort: 3000
+
+---
+
+apiVersion: v1
+kind: Service
+metadata:
+  name: simulador-do-caos
+spec:
+  type: LoadBalancer
+  selector:
+    app: simulador-do-caos
+  ports:
+  - protocol: TCP
+    port: 3000
+    targetPort: 3000
